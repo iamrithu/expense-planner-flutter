@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import './transaction.dart';
 
 void main() {
@@ -33,22 +34,12 @@ class MyAppPage extends StatelessWidget {
     return MaterialApp(
       home: Scaffold(
         appBar: AppBar(
-          title: const Center(
-            child: Text('rithi'),
-          ),
+          title: const Text('rithi'),
         ),
         body: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           mainAxisAlignment: MainAxisAlignment.start,
           children: <Widget>[
-            Container(
-              margin: const EdgeInsets.all(0),
-              child: const Card(
-                color: Colors.amber,
-                child: Text('rithi'),
-                elevation: 2,
-              ),
-            ),
             Column(
               children: transaction.map((e) {
                 return Card(
@@ -64,7 +55,7 @@ class MyAppPage extends StatelessWidget {
                           width: 2,
                         )),
                         child: Text(
-                          e.amount.toString(),
+                          '\$ ${e.amount}',
                           style: const TextStyle(
                               fontWeight: FontWeight.bold,
                               fontSize: 16,
@@ -80,7 +71,7 @@ class MyAppPage extends StatelessWidget {
                                 fontWeight: FontWeight.bold, fontSize: 17),
                           ),
                           Text(
-                            e.date.toString(),
+                            DateFormat('dd/MM/yyyy/').format(e.date),
                             style: const TextStyle(color: Colors.grey),
                           )
                         ],
